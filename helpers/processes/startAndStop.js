@@ -50,7 +50,7 @@ export async function startMonitoringProcess(chatId) {
   }
 
   // Use PM2 to stop the process by name
-  exec(`pm2 stop ${user.monitoringInstance}`, async(error, stdout, stderr) => {
+  exec(`pm2 delete ${user.monitoringInstance}`, async(error, stdout, stderr) => {
     if (error) {
       console.error(`PM2 error: ${error.message}`);
       bot.sendMessage(chatId, 'Failed to stop monitoring. Please try again.');
