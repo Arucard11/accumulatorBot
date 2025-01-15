@@ -1,0 +1,25 @@
+{
+  "name": "millionindicator",
+  "version": "1.0.0",
+  "main": "filterByDate.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@metaplex/js": "^4.12.0",
+    "@raydium-io/raydium-sdk-v2": "^0.1.96-alpha",
+    "@solana/spl-token": "^0.4.9",
+    "@solana/web3.js": "^1.95.8",
+    "@solflare-wallet/utl-sdk": "^1.4.0",
+    "dotenv": "^16.4.7",
+    "mongodb": "^6.12.0",
+    "mongoose": "^8.9.2",
+    "node-telegram-bot-api": "^0.66.0",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0"
+  },
+  "type": "module"
+}
