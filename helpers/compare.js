@@ -8,13 +8,14 @@ export async function compare(tokenArray,user){
 //first we want to get the tokens updated holder count and token held amount
     
     if(user.trackedPools.length > 1){
-            for(newToken of tokenArray){
-                for(token of user.trackedPools){
+            for(let newToken of tokenArray){
+                for(let token of user.trackedPools){
                     if(newToken.poolId === token.poolId){
                         let percentChange = calculatePercentChange(token.tokensInPool,newToken.tokensInPool)
                         if(percentChange <= user.settings.minChangePercent){
                         let {name,symbol} = await getMetadata(token.address)
-                        bot.sendMessage(user.chatId,`this pool has had a ${percentChange}% change in the tokens in its pool, wallets are buying! \nname:${name}\nticker:${symbol} \nmint address:${token.address}`)
+                        bot.sendMessage(user.chatId,`this pool has had a \`${percentChange.toFixed(2)}%\` change in the tokens in its pool, wallets are buying! \nname: \`${name}\`\nticker: $\`${symbol}\` \nmint address: \`${token.address}\``
+)
                     }
                 }
             }

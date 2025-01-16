@@ -25,38 +25,38 @@ export function filterByDate(tokenArray, tokenAge) {
     return (filteredArray = tokenArray.filter(
       (token) => {
         const tokenDate = new Date(token.minted_at);
-        return tokenDate >= oneDayAgo && tokenDate < now && token.daily_volume !== null && token.daily_volume > 2000000
+        return tokenDate >= oneDayAgo && tokenDate < now && token.daily_volume !== null && token.daily_volume > 200000
       }
     ));
   }
   if (tokenAge === "week") {
    
     return (filteredArray = tokenArray.filter(
-      (token) => new Date(token.minted_at) > oneWeekAgo && token.minted_at!== null && token.daily_volume !== null && token.daily_volume > 2000000
+      (token) => new Date(token.minted_at) > oneWeekAgo && token.minted_at!== null && token.daily_volume !== null && token.daily_volume > 200000
     ));
   }
   if (tokenAge === "month") {
   
     return (filteredArray = tokenArray.filter(
-      (token) => new Date(token.minted_at) > oneMonthAgo && token.minted_at!== null && token.daily_volume !== null && token.daily_volume > 2000000
+      (token) => new Date(token.minted_at) > oneMonthAgo && token.minted_at!== null && token.daily_volume !== null && token.daily_volume > 200000
     ));
   }
   if (tokenAge === "three months") {
     
     return (filteredArray = tokenArray.filter(
-      (token) => new Date(token.minted_at) > threeMonthsAgo && token.minted_at!== null && token.daily_volume !== null && token.daily_volume > 2000000
+      (token) => new Date(token.minted_at) > threeMonthsAgo && token.minted_at!== null && token.daily_volume !== null && token.daily_volume > 200000
     ));
   }
   if (tokenAge === "six months") {
     
     return (filteredArray = tokenArray.filter(
-      (token) => new Date(token.minted_at) > sixMonthsAgo && token.minted_at !== null && token.daily_volume !== null && token.daily_volume > 2000000
+      (token) => new Date(token.minted_at) > sixMonthsAgo && token.minted_at !== null && token.daily_volume !== null && token.daily_volume > 200000
     ));
   }
   if (tokenAge === "year") {
     
     return (filteredArray = tokenArray.filter(
-      (token) => new Date(token.minted_at) > oneYearAgo && token.minted_at !== null && token.daily_volume !== null && token.daily_volume > 2000000
+      (token) => new Date(token.minted_at) > oneYearAgo && token.minted_at !== null && token.daily_volume !== null && token.daily_volume > 200000
     ));
   }
 
