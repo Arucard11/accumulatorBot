@@ -32,13 +32,15 @@ export const fetchRpcPoolInfo = async (mint) => {
         type:Standard
       })
     
-    if(data){      
+    if(data.data[0]){      
         let poolInfo = {}
         let {id,mintA,mintB,day:{volume},mintAmountA,mintAmountB} = data.data[0]
         mintA.address === sol ? poolInfo['tokensInPool'] = mintAmountB : poolInfo["tokensInPool"] = mintAmountA
         poolInfo.id = id
   
         return poolInfo
+    }else{
+        return {id:null,tokensInPool:null}  
     }
     
 

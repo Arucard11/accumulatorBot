@@ -1,6 +1,11 @@
 import dotenv from 'dotenv';
 dotenv.config();
 import {connectDB} from './DB/connectToDB.js'
+import cron from 'node-cron'
+import {getTokens} from './helpers/getAllTokens.js'
+import {filterByDate} from './helpers/filterByDate.js'
+import {fetchRpcPoolInfo} from './helpers/getLiquidityPool.js'
+import {compare} from './helpers/compare.js'
 import {User} from './DB/userSchema.js'
 import { startMonitoringProcess,stopMonitoringProcess } from './helpers/processes/startAndStop.js';
 import TelegramBot from 'node-telegram-bot-api'
@@ -238,3 +243,25 @@ bot.on('message', (msg) => {
 
 console.log('Bot is running...');
 
+
+cron.schedule('0 */2 * * *', async() => {
+  let tokens = await getTokens()
+  let filteredTokens = filterByDate(tokens,"year")
+  let trackedPools = []
+  let users = await User.find({})
+
+  for(let token of filteredTokens){
+          let {id,tokensInPool} = await fetchRpcPoolInfo(token.address)
+          if(id && tokensInPool){
+              let tokenObj = {address:token.address,poolId:id,tokensInPool:tokensInPool}
+              trackedPools.push(tokenObj)    
+          }
+          await new Promise(resolve => setTimeout(resolve, 3000));
+      }
+
+  for(let user of users){
+    compare(trackedPools,user)
+    user.trackedPools = trackedPools
+    await user.save()
+  }
+});

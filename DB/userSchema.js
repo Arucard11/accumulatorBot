@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema({
   trackedPools: [
     {
       poolId: { type: String, required: false }, // Token pool ID
-      tokensInPool: { type: Number, required: false }, // Age filter (e.g., '1 year', '6 months', etc.)
+      tokensInPool: { type: Number, required: false }, 
       address:{type:String, required:false}
     },
   ],
