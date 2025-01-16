@@ -14,7 +14,7 @@ export async function compare(tokenArray,user){
                         let percentChange = calculatePercentChange(token.tokensInPool,newToken.tokensInPool)
                         if(percentChange <= user.settings.minChangePercent){
                         let {name,symbol} = await getMetadata(token.address)
-                        bot.sendMessage(user.chatId,`this pool has had a \`${percentChange.toFixed(2)}%\` change in the tokens in its pool, wallets are buying! \nname: \`${name}\`\nticker: $\`${symbol}\` \nmint address: \`${token.address}\``
+                        bot.sendMessage(user.chatId,`this pool has had a \**${percentChange.toFixed(2)}%**\` change in the tokens in its pool, wallets are buying! \nname: \**${name}**\nticker: $${symbol} \nmint address: \```${token.address}\````
 )
                     }
                 }
