@@ -244,7 +244,7 @@ bot.on('message', (msg) => {
 console.log('Bot is running...');
 
 
-cron.schedule('*/30 * * * *', async() => {
+cron.schedule('0 */2 * * *', async() => {
   console.log('running a task every 20 minutes');
   let tokens = await getTokens()
   let filteredTokens = filterByDate(tokens,"year")
