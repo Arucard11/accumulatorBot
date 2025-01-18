@@ -20,10 +20,10 @@ export async function compare(tokenArray,user){
                         try{
                            let text 
 
-                            bot.sendMessage(user.chatId, `This pool has had a **${percentChange.toFixed(4)}%** change in the tokens in its pool. Wallets are buying! 
-**Name:** ${name}  
-**Ticker:** [$${symbol}](https://t.me/share/url?url=$${symbol})  
-**Mint Address:** \`${token.address}\``,{parse_mode:"MarkdownV2"});
+                            bot.sendMessage(user.chatId, `This pool has had a 📈 **${percentChange.toFixed(4)}%** change in the tokens in its pool. Wallets are buying! 
+✅ **Name:** ${name}  
+📡**Ticker:** [$${symbol}](https://t.me/share/url?url=$${symbol})  
+🏚 **Mint Address:** \`${token.address}\``,{parse_mode:"MarkdownV2"});
                         }catch(e){
                             if(e) console.log(e)
                         }
