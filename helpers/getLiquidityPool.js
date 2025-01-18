@@ -39,8 +39,6 @@ export const fetchRpcPoolInfo = async (mint) => {
         poolInfo.id = id
   
         return poolInfo
-    }else{
-        return {id:null,tokensInPool:null}  
     }
     
 

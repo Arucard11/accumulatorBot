@@ -244,19 +244,20 @@ bot.on('message', (msg) => {
 console.log('Bot is running...');
 
 
-cron.schedule('0 */2 * * *', async() => {
+cron.schedule('*/30 * * * *', async() => {
+  console.log('running a task every 20 minutes');
   let tokens = await getTokens()
   let filteredTokens = filterByDate(tokens,"year")
   let trackedPools = []
   let users = await User.find({})
 
   for(let token of filteredTokens){
-          let {id,tokensInPool} = await fetchRpcPoolInfo(token.address)
-          if(id && tokensInPool){
-              let tokenObj = {address:token.address,poolId:id,tokensInPool:tokensInPool}
+          let tokenInfo = await fetchRpcPoolInfo(token.address)
+          await new Promise(resolve => setTimeout(resolve, 3000));
+          if(tokenInfo){
+              let tokenObj = {address:token.address,poolId:tokenInfo.id,tokensInPool:tokenInfo.tokensInPool}
               trackedPools.push(tokenObj)    
           }
-          await new Promise(resolve => setTimeout(resolve, 3000));
       }
 
   for(let user of users){

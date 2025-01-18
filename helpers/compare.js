@@ -13,9 +13,23 @@ export async function compare(tokenArray,user){
                     if(newToken.poolId === token.poolId){
                         let percentChange = calculatePercentChange(token.tokensInPool,newToken.tokensInPool)
                         if(percentChange <= user.settings.minChangePercent){
-                        let {name,symbol} = await getMetadata(token.address)
-                        bot.sendMessage(user.chatId,`this pool has had a **${percentChange.toFixed(4)}%** change in the tokens in its pool, wallets are buying! \nname: \**${name}**\nticker: $${symbol} \nmint address: \```${token.address}\````
-)
+                            let {name,symbol} = await getMetadata(token.address)
+                            await new Promise(resolve => setTimeout(resolve, 3000));
+                            console.log(name,symbol)
+                            console.log(percentChange)
+                        try{
+                            console.log(`this pool has had a **${percentChange.toFixed(4)}%** change in the tokens in its pool, wallets are buying! 
+                            name: **${name}**
+                            ticker: $${symbol} 
+                            mint address: \`${token.address}\``);
+
+                            bot.sendMessage(user.chatId, `this pool has had a **${percentChange.toFixed(4)}%** change in the tokens in its pool, wallets are buying! 
+                            name: **${name}**
+                            ticker: $${symbol} 
+                            mint address: \`${token.address}\``);
+                        }catch(e){
+                            if(e) console.log(e)
+                        }
                     }
                 }
             }
