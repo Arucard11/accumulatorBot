@@ -18,15 +18,12 @@ export async function compare(tokenArray,user){
                             console.log(name,symbol)
                             console.log(percentChange)
                         try{
-                            console.log(`this pool has had a **${percentChange.toFixed(4)}%** change in the tokens in its pool, wallets are buying! 
-                            name: **${name}**
-                            ticker: $${symbol} 
-                            mint address: \`${token.address}\``);
+                           let text 
 
-                            bot.sendMessage(user.chatId, `this pool has had a **${percentChange.toFixed(4)}%** change in the tokens in its pool, wallets are buying! 
-                            name: **${name}**
-                            ticker: $${symbol} 
-                            mint address: \`${token.address}\``);
+                            bot.sendMessage(user.chatId, `This pool has had a **${percentChange.toFixed(4)}%** change in the tokens in its pool. Wallets are buying! 
+**Name:** ${name}  
+**Ticker:** [$${symbol}](https://t.me/share/url?url=$${symbol})  
+**Mint Address:** \`${token.address}\``,{parse_mode:"MarkdownV2"});
                         }catch(e){
                             if(e) console.log(e)
                         }
