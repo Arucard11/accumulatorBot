@@ -255,13 +255,14 @@ cron.schedule('30 * * * *', async() => {
           let tokenInfo = await fetchRpcPoolInfo(token.address)
           await new Promise(resolve => setTimeout(resolve, 3000));
           if(tokenInfo){
+              console.log(tokenInfo)
               let tokenObj = {address:token.address,poolId:tokenInfo.id,tokensInPool:tokenInfo.tokensInPool}
               trackedPools.push(tokenObj)    
           }
       }
 
   for(let user of users){
-    compare(trackedPools,user)
+    await compare(trackedPools,user)
     user.trackedPools = trackedPools
     await user.save()
   }
