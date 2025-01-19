@@ -48,12 +48,14 @@ export async function startMonitoringProcess(chatId) {
   
       // then we get the liquidity pool info for each token
       for(let token of filteredTokens){
-          let {id,tokensInPool} = await fetchRpcPoolInfo(token.address)
-          if(id && tokensInPool){
-              let tokenObj =  {address:token.address,poolId:id,tokensInPool:tokensInPool}
-              tokenObjArray.push(tokenObj)    
-          }
+        let tokenInfo = await fetchRpcPoolInfo(token.address)
           await new Promise(resolve => setTimeout(resolve, 3000));
+          if(tokenInfo){
+              console.log(tokenInfo)
+              let tokenObj = {address:token.address,poolId:tokenInfo.id,tokensInPool:tokenInfo.tokensInPool}
+              trackedPools.push(tokenObj)    
+          }
+          
       }
       user.trackedPools = tokenObjArray
       await user.save()
